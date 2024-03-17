@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:enjoyce/pages/start_page.dart';
+import 'pages/login_page.dart';
 
 void main() { //it runs the app (MainApp)
   runApp(const MainApp());
