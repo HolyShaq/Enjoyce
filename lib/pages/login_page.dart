@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
                         foregroundColor: MaterialStatePropertyAll(Colors.white),
                       ),
                       onPressed: () {
-                        print("Helo");
+                        print("Log-in button pressed!");
                       },
                       child: const Text(
                         "Log In",
@@ -166,8 +166,8 @@ class LoginPage extends StatelessWidget {
                         foregroundColor: MaterialStatePropertyAll(Colors.black),
                       ),
                       onPressed: () {
-                        print("Helo");
-                      },
+                        print("Create an Account button pressed!");
+                      }, //onPressed
                       child: const Text(
                         "Create an Account",
                         style: TextStyle(
