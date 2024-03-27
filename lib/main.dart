@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:enjoyce/pages/start_page.dart';
-import 'pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() { //it runs the app (MainApp)
+void main() async { //it runs the app (MainApp)
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MainApp());
 }
 

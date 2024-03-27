@@ -1,5 +1,5 @@
 import 'package:enjoyce/components/circles_background.dart';
-import 'package:enjoyce/pages/login_page.dart'; // Import LoginPage
+import 'package:enjoyce/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 
 class StartPage extends StatelessWidget {
@@ -11,7 +11,7 @@ class StartPage extends StatelessWidget {
     Future.delayed(Duration(seconds: 2), () {
       // Navigating to the LoginPage after 2 seconds
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => LoginPage(), // Replace StartPage with LoginPage
+        builder: (_) => const AuthPage(), // Replace StartPage with LoginPage
       ));
     });
 
