@@ -24,17 +24,20 @@ class StartPage extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: 268, width: 54),
+                  const SizedBox(height: 268, width: 54),
                   // Logo
-                  Image.asset(
-                    'lib/assets/enjoyce_logo.png',
-                    width: 252,
-                    height: 264,
+                  Hero(
+                    tag: "logo",
+                    child: Image.asset(
+                      'lib/assets/enjoyce_logo.png',
+                      width: 252,
+                      height: 264,
+                    ),
                   ),
-                  SizedBox(height: 100),
+                  const SizedBox(height: 100),
 
                   // Developed By:
-                  Text(
+                  const Text(
                     "Developed By:",
                     style: TextStyle(
                       color: Color.fromRGBO(43, 154, 216, 1),
@@ -43,10 +46,10 @@ class StartPage extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
 
                   // Appetizer
-                  Text(
+                  const Text(
                     "APPetizer",
                     style: TextStyle(
                       color: Color.fromRGBO(244, 115, 200, 1),
@@ -55,7 +58,7 @@ class StartPage extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),

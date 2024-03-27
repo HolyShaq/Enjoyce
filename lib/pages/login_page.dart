@@ -19,10 +19,13 @@ class LoginPage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 80),
                   // Logo
-                  Image.asset(
-                    'lib/assets/enjoyce_logo.png',
-                    width: 171,
-                    height: 163,
+                  Hero(
+                    tag: "logo",
+                    child: Image.asset(
+                      'lib/assets/enjoyce_logo.png',
+                      width: 171,
+                      height: 163,
+                    ),
                   ),
                   const SizedBox(height: 13),
 
