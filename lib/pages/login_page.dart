@@ -1,9 +1,7 @@
 import 'package:enjoyce/components/box_icon_button.dart';
 import 'package:enjoyce/components/circles_background.dart';
 import 'package:enjoyce/components/custom_text_field.dart';
-import 'package:enjoyce/pages/start_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
