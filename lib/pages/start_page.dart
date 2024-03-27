@@ -11,7 +11,7 @@ class StartPage extends StatelessWidget {
     Future.delayed(Duration(seconds: 2), () {
       // Navigating to the LoginPage after 2 seconds
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => const AuthPage(), // Replace StartPage with LoginPage
+        builder: (_) => AuthPage(), // Replace StartPage with LoginPage
       ));
     });
 

@@ -1,10 +1,27 @@
 import 'package:enjoyce/components/box_icon_button.dart';
 import 'package:enjoyce/components/circles_background.dart';
 import 'package:enjoyce/components/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void login() async {
+    try {
+      final credential = FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password ') {
+        print('Invalid credentials');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +65,20 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 30),
 
                   // Email Entry
-                  const CustomTextField(
+                  CustomTextField(
                     label: "E-mail",
                     hintText: "Enter your e-mail",
                     isPasswordField: false,
+                    controller: emailController,
                   ),
                   const SizedBox(height: 20),
 
                   // Password Entry
-                  const CustomTextField(
+                  CustomTextField(
                     label: "Password",
                     hintText: "Enter your password",
                     isPasswordField: true,
+                    controller: passwordController,
                   ),
                   const SizedBox(height: 20),
 
@@ -74,7 +93,7 @@ class LoginPage extends StatelessWidget {
                         foregroundColor: MaterialStatePropertyAll(Colors.white),
                       ),
                       onPressed: () {
-                        print("Log-in button pressed!");
+                        login();
                       },
                       child: const Text(
                         "Log In",

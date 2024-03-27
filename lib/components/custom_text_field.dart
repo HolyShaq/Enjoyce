@@ -4,12 +4,14 @@ class CustomTextField extends StatefulWidget {
   final String label;
   final String hintText;
   final bool isPasswordField;
+  final TextEditingController controller;
 
   const CustomTextField({
     super.key,
     required this.label,
     required this.hintText,
     required this.isPasswordField,
+    required this.controller,
   });
 
   @override
@@ -43,6 +45,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return SizedBox(
       width: 380,
       child: TextField(
+        controller: widget.controller,
         obscureText: !fieldVisible,
         decoration: InputDecoration(
           suffixIcon: IconButton(

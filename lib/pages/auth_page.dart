@@ -3,7 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+  AuthPage({super.key});
+
+  void signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +16,26 @@ class AuthPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return const Scaffold(); // Homepage Page goes here
+            
+            // Homepage Page goes here
+            return Scaffold(
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("You are logged in"),
+                    ElevatedButton(
+                        onPressed: () {
+                          signOut();
+                        },
+                        child: const Text("LogOut"))
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return LoginPage();
           }
-
-          else {
-            return const LoginPage();
-          } 
         },
       ),
     );
