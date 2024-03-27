@@ -10,9 +10,7 @@ class StartPage extends StatelessWidget {
     // Simulating some loading time before navigating to the login page
     Future.delayed(Duration(seconds: 2), () {
       // Navigating to the LoginPage after 2 seconds
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => LoginPage(), // Replace StartPage with LoginPage
-      ));
+      Navigator.pushReplacementNamed(context, "/loginpage");
     });
 
     return Scaffold(
