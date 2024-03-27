@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "774577968923",
+    "project_id": "enjoyce-86d17",
+    "storage_bucket": "enjoyce-86d17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774577968923:android:61c67d1609fe5fdbaba5be",
+        "android_client_info": {
+          "package_name": "com.example.enjoyce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgbgS_Dm5XK0fPFdqmOOVHvEIxwLri5os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
