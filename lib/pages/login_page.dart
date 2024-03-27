@@ -4,6 +4,8 @@ import 'package:enjoyce/components/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+final loginFormKey = GlobalKey<FormState>();
+
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
@@ -12,7 +14,7 @@ class LoginPage extends StatelessWidget {
 
   void login() async {
     try {
-      final credential = FirebaseAuth.instance.signInWithEmailAndPassword(
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text
       );
@@ -64,22 +66,8 @@ class LoginPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
 
-                  // Email Entry
-                  CustomTextField(
-                    label: "E-mail",
-                    hintText: "Enter your e-mail",
-                    isPasswordField: false,
-                    controller: emailController,
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Password Entry
-                  CustomTextField(
-                    label: "Password",
-                    hintText: "Enter your password",
-                    isPasswordField: true,
-                    controller: passwordController,
-                  ),
+                  LoginForm(emailController: emailController, passwordController: passwordController),
+                  
                   const SizedBox(height: 20),
 
                   // Log In Button
@@ -93,7 +81,9 @@ class LoginPage extends StatelessWidget {
                         foregroundColor: MaterialStatePropertyAll(Colors.white),
                       ),
                       onPressed: () {
-                        login();
+                        if (loginFormKey.currentState!.validate()) {
+                          login();
+                        }
                       },
                       child: const Text(
                         "Log In",
@@ -202,6 +192,63 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class LoginForm extends StatefulWidget {
+  const LoginForm({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+  });
+
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: loginFormKey,
+      child: Column(
+        children: [
+          // Email Entry
+          CustomTextField(
+            label: "E-mail",
+            hintText: "Enter your e-mail",
+            isPasswordField: false,
+            controller: widget.emailController,
+            validator: (email) {
+              print(email);
+              final RegExp emailRegex = RegExp(
+                  r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'); // Regular expression for email validation
+              if (!emailRegex.hasMatch(email ?? '')) {
+                return 'Please enter a valid e-mail';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 20),
+          // Password Entry
+          CustomTextField(
+            label: "Password",
+            hintText: "Enter your password",
+            isPasswordField: true,
+            controller: widget.passwordController,
+            validator: (password) {
+              if (password == null || password.isEmpty) {
+                return 'Password field must not be empty';
+              }
+              return null;
+            },
+          ),
+        ],
       ),
     );
   }
