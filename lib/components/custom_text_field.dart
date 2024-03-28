@@ -6,6 +6,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPasswordField;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final Function onChanged;
 
   const CustomTextField({
     super.key,
@@ -14,6 +15,7 @@ class CustomTextField extends StatefulWidget {
     required this.isPasswordField,
     required this.controller,
     required this.validator,
+    required this.onChanged,
   });
 
   @override
@@ -50,44 +52,47 @@ class _CustomTextFieldState extends State<CustomTextField> {
         controller: widget.controller,
         obscureText: !fieldVisible,
         decoration: InputDecoration(
-            suffixIcon: IconButton(
-              icon: Icon(suffixIcon),
-              onPressed: () {
-                toggleVisibility();
-              },
+          suffixIcon: IconButton(
+            icon: Icon(suffixIcon),
+            onPressed: () {
+              toggleVisibility();
+            },
+          ),
+          label: Text(widget.label),
+          hintText: widget.hintText,
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(43, 153, 216, 1),
+              width: 2,
             ),
-            label: Text(widget.label),
-            hintText: widget.hintText,
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color.fromRGBO(43, 153, 216, 1),
-                width: 2,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(43, 153, 216, 1),
+              width: 3,
             ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color.fromRGBO(43, 153, 216, 1),
-                width: 3,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          ),
+          errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(204, 0, 1, 1),
+              width: 3,
             ),
-            errorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color.fromRGBO(204, 0, 1, 1),
-                width: 3,
-              ),
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(204, 0, 1, 1),
+              width: 3,
             ),
-            focusedErrorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color.fromRGBO(204, 0, 1, 1),
-                width: 3,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            ),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          ),
+        ),
         validator: widget.validator,
         autovalidateMode: AutovalidateMode.onUserInteraction,
+        onChanged: (value) {
+          widget.onChanged();
+        },
       ),
     );
   }

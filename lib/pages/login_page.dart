@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 final loginFormKey = GlobalKey<FormState>();
+bool invalidCredentials = false;
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -15,12 +16,11 @@ class LoginPage extends StatelessWidget {
   void login() async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text
-      );
+          email: emailController.text, password: passwordController.text);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'wrong-password ') {
-        print('Invalid credentials');
+      if (e.code == 'invalid-credential') {
+        invalidCredentials = true;
+        loginFormKey.currentState!.validate();
       }
     }
   }
@@ -66,8 +66,11 @@ class LoginPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
 
-                  LoginForm(emailController: emailController, passwordController: passwordController),
-                  
+                  // Text Fields
+                  LoginForm(
+                      emailController: emailController,
+                      passwordController: passwordController),
+
                   const SizedBox(height: 20),
 
                   // Log In Button
@@ -165,10 +168,11 @@ class LoginPage extends StatelessWidget {
                     width: 380,
                     height: 50,
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(100)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(100)),
                         border: Border.all(
-                      color: Colors.lightBlue,
-                    )),
+                          color: Colors.lightBlue,
+                        )),
                     child: TextButton(
                       style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(Colors.white),
@@ -225,13 +229,18 @@ class _LoginFormState extends State<LoginForm> {
             isPasswordField: false,
             controller: widget.emailController,
             validator: (email) {
-              print(email);
               final RegExp emailRegex = RegExp(
                   r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'); // Regular expression for email validation
               if (!emailRegex.hasMatch(email ?? '')) {
                 return 'Please enter a valid e-mail';
               }
+              if (invalidCredentials) {
+                return 'Invalid credentials';
+              }
               return null;
+            },
+            onChanged: () {
+              invalidCredentials = false;
             },
           ),
           const SizedBox(height: 20),
@@ -245,7 +254,13 @@ class _LoginFormState extends State<LoginForm> {
               if (password == null || password.isEmpty) {
                 return 'Password field must not be empty';
               }
+              if (invalidCredentials) {
+                return 'Invalid credentials';
+              }
               return null;
+            },
+            onChanged: () {
+              invalidCredentials = false;
             },
           ),
         ],
