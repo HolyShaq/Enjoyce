@@ -15,8 +15,8 @@ class LoginPage extends StatelessWidget {
 
   void login() async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
         invalidCredentials = true;
