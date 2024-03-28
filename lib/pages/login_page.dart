@@ -1,27 +1,51 @@
 import 'package:enjoyce/components/box_icon_button.dart';
 import 'package:enjoyce/components/circles_background.dart';
 import 'package:enjoyce/components/custom_text_field.dart';
+import 'package:enjoyce/pages/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 final loginFormKey = GlobalKey<FormState>();
 bool invalidCredentials = false;
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   void login() async {
+    // Loading Circle
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.lightBlue,
+            ),
+          );
+        });
+
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text, password: passwordController.text);
+      await FirebaseAuth.instance
+          // Log in
+          .signInWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text)
+          // Pop loading circle
+          .then((value) => Navigator.pop(context));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
+        // Show invalid credential error on text fields
         invalidCredentials = true;
         loginFormKey.currentState!.validate();
       }
+      Navigator.pop(context);
     }
   }
 
@@ -179,7 +203,10 @@ class LoginPage extends StatelessWidget {
                         foregroundColor: MaterialStatePropertyAll(Colors.black),
                       ),
                       onPressed: () {
-                        print("Create an Account button pressed!");
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) =>
+                              SigninPage(),
+                        ));
                       }, //onPressed
                       child: const Text(
                         "Create an Account",
@@ -227,6 +254,7 @@ class _LoginFormState extends State<LoginForm> {
             label: "E-mail",
             hintText: "Enter your e-mail",
             isPasswordField: false,
+            isConfirmPasswordField: false,
             controller: widget.emailController,
             validator: (email) {
               final RegExp emailRegex = RegExp(
@@ -249,6 +277,7 @@ class _LoginFormState extends State<LoginForm> {
             label: "Password",
             hintText: "Enter your password",
             isPasswordField: true,
+            isConfirmPasswordField: false,
             controller: widget.passwordController,
             validator: (password) {
               if (password == null || password.isEmpty) {
