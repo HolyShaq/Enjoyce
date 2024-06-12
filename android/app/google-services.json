@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "635009791362",
+    "project_id": "enjoyce-wvoh32",
+    "storage_bucket": "enjoyce-wvoh32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635009791362:android:36fdf3056fe47c2ee78b9b",
+        "android_client_info": {
+          "package_name": "com.enjoyce.travel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635009791362-dpq70l7pkcb06n6s1e6a0k8e3daj57va.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enjoyce.travel",
+            "certificate_hash": "1836c357c78f8e71383ebc1634bfd6e28679a02d"
+          }
+        },
+        {
+          "client_id": "635009791362-r6cde332iqdq61lqgb51prept9a7bb0q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enjoyce.travel",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "635009791362-qf46a2vpcqq9mpf3i1cclhv7rsppdcjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfPvjOGS5MN_Z2xYOl29ZSF7hl1AhE5Vc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635009791362-qf46a2vpcqq9mpf3i1cclhv7rsppdcjt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "635009791362-d03ohm8750df4aefvpi27g1dlkm2398h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.enjoyce.travel"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

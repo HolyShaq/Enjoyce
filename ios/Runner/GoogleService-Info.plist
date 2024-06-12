@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>635009791362-d03ohm8750df4aefvpi27g1dlkm2398h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.635009791362-d03ohm8750df4aefvpi27g1dlkm2398h</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>635009791362-bub6n5fb83st6ujqd8pvt65chqdnjh80.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDa14GfbC_W37LGi86MLCN0fdD6v7wVdCM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>635009791362</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.enjoyce.travel</string>
+	<key>PROJECT_ID</key>
+	<string>enjoyce-wvoh32</string>
+	<key>STORAGE_BUCKET</key>
+	<string>enjoyce-wvoh32.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:635009791362:ios:4dc4bc6dc510bcaee78b9b</string>
+</dict>
+</plist>
